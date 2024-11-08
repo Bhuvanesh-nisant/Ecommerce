@@ -9,6 +9,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="Products")
 public class Product {
+	public Product(String name, double price, String description, double ratings, String category, String seller,
+			int stock, int numOfReviews) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.ratings = ratings;
+		this.category = category;
+		this.seller = seller;
+		Stock = stock;
+		this.numOfReviews = numOfReviews;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -75,5 +87,9 @@ public class Product {
 	private String seller;
 	private int Stock;
 	private int numOfReviews;
+
+	public Product() {
+		super();
+	}
 
 }
