@@ -1,5 +1,9 @@
 package com.Bcode.Ecart.models;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name="Products")
 public class Product {
 	public Product(String name, double price, String description, double ratings, String category, String seller,
-			int stock, int numOfReviews) {
+			int stock, int numOfReviews, List<String> images ) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -20,6 +24,7 @@ public class Product {
 		this.seller = seller;
 		Stock = stock;
 		this.numOfReviews = numOfReviews;
+		this.images= images;
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -87,7 +92,17 @@ public class Product {
 	private String seller;
 	private int Stock;
 	private int numOfReviews;
+	
+	@ElementCollection
+	@Column(name="image_url")
+	private List<String> images;
 
+	public List<String> getImages() {
+		return images;
+	}
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
 	public Product() {
 		super();
 	}
